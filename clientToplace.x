@@ -4,34 +4,34 @@ const CITYMAXLEN = 63;
 typedef string codetype<CODELEN>;
 typedef string citytype<CITYMAXLEN>;
 typedef string statetype<STATEMAXLEN>;
-typedef struct airport* airportlist;
+typedef struct place* placelist;
 
 /* a node in the airport list*/
-struct airport {
+struct place {
    codetype code;
-   citytype name; 
+   citytype city; 
    statetype state; 
    double distance;
-   airportlist* next;
+   placelist next;
 };
 
 /*a node storing city name and state*/ 
 struct location {
-   citytype name; 
+   citytype city; 
    statetype state; 
 };
 
 /*result of an operation*/ 
-union returnAirports switch (int err) {
+union returnPlaces switch (int err) {
    case 0:
-   	airportlist list; 
+   	placelist list; 
    default:
 	void; 
 };
  
-program PLACE_TO_AIRPORT {
-	version PLACE_TO_AIRPORT_VERS {
-		returnAirports getFiveAirports(location*) = 1;
+program CLIENT_TO_PLACE {
+	version CLIENT_TO_PLACE_VERS {
+		returnPlaces placeServerFunct(location) = 1;
 	} = 1;
 } = 0x20000014;
 

@@ -9,10 +9,10 @@ typedef struct airport* airportlist;
 /* a node in the airport list*/
 struct airport {
    codetype code;
-   citytype name; 
+   citytype city; 
    statetype state; 
    double distance;
-   airportlist* next;
+   airportlist next;
 };
 
 /*a node storing latitude and longitude*/ 
@@ -32,7 +32,7 @@ union returnAirports switch (int err) {
  
 program PLACE_TO_AIRPORT {
 	version PLACE_TO_AIRPORT_VERS {
-		returnAirports getFiveAirports(LatLon*) = 1;
+		returnAirports airportServerFunct(LatLon) = 1;
 	} = 1;
-} = 0x20000014;
+} = 0x20000015;
 
